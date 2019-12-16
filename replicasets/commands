@@ -1,0 +1,6 @@
+k get replicasets
+k describe replicaset new-replica-set | grep -i image:
+k delete replicaset rs-1
+k edit replicaset rs-1
+k delete pods `k get pods | grep new | awk -F " " '{print $1}'`
+k scale replicaset new-replica-set --replicas=5
