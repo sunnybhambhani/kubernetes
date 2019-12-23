@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-config
+data:
+  NGINX_HOME: /opt
+  NGINX_BIN: /opt/bin
