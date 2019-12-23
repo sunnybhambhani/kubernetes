@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    env:
+      - name: "NGINX_HOME"
+        value: "/opt/nginx/current/"
+      - name: "NGINX_BIN"
+        value: "/opt/nginx/current/bin"
