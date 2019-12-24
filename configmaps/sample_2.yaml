@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    env:
+      - name: NGINX_HOST
+        valueFrom:
+          configMapKeyRef:
+            name: env-nginx
+            key: NGINX_HOST
+

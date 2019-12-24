@@ -1,2 +1,2 @@
-NGINX_HOME: /opt/nginx/current
-NGINX_BIN: /opt/nginx/current/bin
+NGINX_HOME=/opt/nginx/current
+NGINX_BIN=/opt/nginx/current/bin
