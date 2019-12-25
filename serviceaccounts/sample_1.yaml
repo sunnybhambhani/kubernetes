@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: web-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: web-dashboard
+  template:
+    metadata:
+      labels:
+        name: web-dashboard
+    spec:
+      containers:
+      - image: kodekloud/my-kubernetes-dashboard
+        name: web-dashboard
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      serviceAccountName: dashboard-sa
