@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: math-expr
+spec:
+  containers:
+    - name: math-expr
+      image: ubuntu
+      command: ['expr', '3', '+', '33']
+  restartPolicy: Never
