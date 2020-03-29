@@ -12,7 +12,7 @@ preprod-nginx   1/1     Running   0          55s   env=preprod
 prod-nginx      0/1     Pending   0          55s   env=prod
 ```
 
-### Since we don't have enough resources one of our PROD pod went into PENDING state.
+Since we don't have enough resources one of our PROD pod went into PENDING state.
 
 ```
 master $ k get events
@@ -21,7 +21,7 @@ master $ k get events
 5s          Warning   FailedScheduling   pod/prod-nginx      0/2 nodes are available: 1 Insufficient cpu, 2 Insufficient memory.
 ```
 
-### If you will see the events it will clrealy state about the resource contraints.
+If you will see the events it will clrealy state about the resource contraints.
 
 ```
 master $ ls -lrt
@@ -30,7 +30,8 @@ master $ ls -lrt
 -rw-r--r-- 1 root root  232 Mar 29 12:40 prod-pc-p1.yaml
 -rw-r--r-- 1 root root  245 Mar 29 12:40 prod-pc-p2.yaml
 ```
-### Here comes the PriorityClass in picture, to try its best and make sure that our top priority pods are up and running.
+
+Here comes the PriorityClass in picture, to try its best and make sure that our top priority pods are up and running.
 
 ```
 apiVersion: scheduling.k8s.io/v1
@@ -59,10 +60,10 @@ system-cluster-critical   2000000000   false            136m
 system-node-critical      2000001000   false            136m
 ```
 
-### system-cluster-critial and system-node-critical are the default ones and are basically used by the pods in kube-system namespace.
-### Updated the pod to have a priority class assigned to PROD.
-### Deleted the PROD pod and recreated again using the priority class.
-### priorityClassName helps in pod manifect to use the priority class.
+* system-cluster-critial and system-node-critical are the default ones and are basically used by the pods in kube-system namespace.
+* priorityClassName helps in pod manifect to use the priority class.
+
+Updated the pod to have a priority class assigned to PROD, deleted the PROD pod and recreated again using the priority class.
 
 ```
 master $ k get pods --show-labels
@@ -72,7 +73,7 @@ preprod-nginx   1/1     Running   	0          55s   env=preprod
 prod-nginx      0/1     Pending   	0          55s   env=prod
 ```
 
-### One of the pod is now in terminating state, once that is terminated our PROD pod will become available to us. 
+One of the pod is now in terminating state, once that is terminated our PROD pod will become available to us. 
 
 ```
 Warning   FailedScheduling   pod/prod-nginx    0/2 nodes are available: 1 Insufficient cpu, 2 Insufficient memory.
@@ -85,4 +86,4 @@ Normal    Created            pod/prod-nginx    Created container prod-nginx
 Normal    Started            pod/prod-nginx    Started container prod-nginx
 ```
 
-### As the events states it evicted the dev-nginx pod and instead of that it scheduled the prod-nginx pod over node01.
+As the events states it evicted the dev-nginx pod and instead of that it scheduled the prod-nginx pod over node01.
