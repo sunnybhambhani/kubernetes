@@ -1,0 +1,7 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: prod-pc-p1
+value: 4000000
+globalDefault: false
+description: "This priority class should only be used for production P1 pods like database, queuing servers etc."
